@@ -1,4 +1,5 @@
 import type { AttorneyProfile } from "@/types/attorney";
+import { DEFAULT_CONTACT } from "@/config/default-contact";
 
 export const jayWangProfile: AttorneyProfile = {
   slug: "jay-wang",
@@ -11,8 +12,7 @@ export const jayWangProfile: AttorneyProfile = {
     "Mr. Wang's litigation practice includes civil claims involving wrongful termination, harassment, unpaid wages, discrimination, trade secrets, and workplace violence. He counsels clients on HR policies, executive and severance agreements, wage and hour issues, workplace investigations, and disciplinary matters.",
     "He has appeared on behalf of employers in federal and state courts and before administrative forums including the EEOC, DFEH, DLSE, EDD, and the Office of Administrative Law Judges for the U.S. Department of Labor. He is a frequent speaker on employment law topics for bar associations, the National Employment Law Institute, and employer advisory councils.",
   ],
-  email: "jay@hnemploymentlaw.com",
-  phone: "408-486-9933",
+  ...DEFAULT_CONTACT,
   address: {
     street: "2021 The Alameda, Suite 240",
     city: "San Jose",

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Scales of justice">
+  <rect width="180" height="180" rx="40" fill="#f7f5f0"/>
+  <g fill="#1a2744" transform="translate(24 24) scale(4.125)">
+    <rect x="15" y="3" width="2" height="21" rx="0.5"/>
+    <rect x="10" y="24" width="12" height="2.5" rx="1.25"/>
+    <rect x="4" y="6" width="24" height="2" rx="1"/>
+    <path d="M6 8 L4 12.5h4L6 8z"/>
+    <path d="M10 8 L8 12.5h4L10 8z"/>
+    <ellipse cx="8" cy="14" rx="5" ry="1.8"/>
+    <path d="M22 8 L20 12.5h4L22 8z"/>
+    <path d="M26 8 L24 12.5h4L26 8z"/>
+    <ellipse cx="24" cy="14" rx="5" ry="1.8"/>
+  </g>
+</svg>

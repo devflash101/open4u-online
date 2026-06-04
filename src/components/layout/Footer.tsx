@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AttorneyProfile } from "@/types/attorney";
 
 interface FooterProps {
@@ -13,8 +14,16 @@ export default function Footer({ attorney }: FooterProps) {
         <p>
           © {year} {attorney.name}. All rights reserved.
         </p>
-        <p className="text-[0.7rem] tracking-wide">
-          {attorney.firm} · {attorney.address.city}, {attorney.address.state}
+        <p className="text-[0.7rem] tracking-wide flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>
+            {attorney.firm} · {attorney.address.city}, {attorney.address.state}
+          </span>
+          <Link
+            href="/bookkeeper"
+            className="hover:text-[var(--attorney-accent)] transition-colors"
+          >
+            Bookkeeper
+          </Link>
         </p>
       </div>
     </footer>

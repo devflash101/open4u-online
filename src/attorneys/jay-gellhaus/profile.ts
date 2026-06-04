@@ -13,7 +13,6 @@ export const jayGellhausProfile: AttorneyProfile = {
   ],
   email: "jay@open4u.online",
   phone: "+1 (863) 455-4771",
-  fax: "605-225-6895",
   address: {
     street: "120 S Lincoln St",
     city: "Aberdeen",

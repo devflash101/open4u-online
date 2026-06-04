@@ -11,8 +11,8 @@ export const jayGellhausProfile: AttorneyProfile = {
     "Gellhaus & Gellhaus has over 60 years of combined experience representing clients throughout Aberdeen and the surrounding area. Whether you have been injured in an auto accident, need assistance with a will or estate plan, or face a complex business or family legal matter, Jay brings thorough knowledge of South Dakota law and a commitment to the best possible outcome for your case.",
     "As a local Aberdeen law firm, Gellhaus & Gellhaus prides itself on top-tier service that the community can depend on — combining the personal touch of a neighborhood practice with the depth of experience needed for complex legal challenges.",
   ],
-  email: "info@gellhauslaw.com",
-  phone: "605-225-6522",
+  email: "jay@open4u.online",
+  phone: "+1 (863) 455-4771",
   fax: "605-225-6895",
   address: {
     street: "120 S Lincoln St",

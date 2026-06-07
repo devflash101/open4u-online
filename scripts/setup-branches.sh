@@ -34,6 +34,7 @@ create_attorney_branch() {
 }
 
 create_attorney_branch "jay-gellhaus"
+create_attorney_branch "jay-gervasi"
 create_attorney_branch "jay-wang"
 
 if ! git show-ref --verify --quiet refs/heads/release; then
@@ -43,4 +44,4 @@ if ! git show-ref --verify --quiet refs/heads/release; then
   echo "Created release branch (currently jay-gellhaus)"
 fi
 
-echo "Done. Attorney branches: attorney/jay-gellhaus, attorney/jay-wang"
+echo "Done. Attorney branches: attorney/jay-gellhaus, attorney/jay-gervasi, attorney/jay-wang"

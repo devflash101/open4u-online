@@ -1,9 +1,11 @@
 import type { AttorneyProfile } from "@/types/attorney";
 import { jayGellhausProfile } from "@/attorneys/jay-gellhaus/profile";
+import { jayGervasiProfile } from "@/attorneys/jay-gervasi/profile";
 import { jayWangProfile } from "@/attorneys/jay-wang/profile";
 
 export const ATTORNEY_REGISTRY: Record<string, AttorneyProfile> = {
   [jayGellhausProfile.slug]: jayGellhausProfile,
+  [jayGervasiProfile.slug]: jayGervasiProfile,
   [jayWangProfile.slug]: jayWangProfile,
 };
 

@@ -37,6 +37,7 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
               { href: "#about", label: "About" },
               { href: "#services", label: "Services" },
               { href: "#contact", label: "Contact" },
+              { href: "/bookkeeper/payment", label: "Payment" },
               { href: "/", label: "Attorney" },
             ].map((link) => (
               <li key={link.href + link.label}>
@@ -196,10 +197,32 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-6">
                 Get in touch with Ronel
               </h2>
-              <p className="opacity-75 leading-relaxed max-w-md">
+              <p className="opacity-75 leading-relaxed max-w-md mb-8">
                 For bookkeeping inquiries related to {attorney.name}&apos;s practice, reach out
                 directly. All communications are handled confidentially.
               </p>
+              <Link
+                href="/bookkeeper/payment"
+                className="inline-flex items-center gap-3 px-6 py-3.5 border transition-colors hover:bg-[var(--attorney-bg)] hover:text-[var(--attorney-primary)]"
+                style={{
+                  borderColor: "var(--attorney-accent)",
+                  color: "var(--attorney-accent)",
+                }}
+              >
+                <span
+                  className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
+                  style={{ backgroundColor: "var(--attorney-accent)", color: "var(--attorney-bg)" }}
+                  aria-hidden
+                >
+                  <Mail className="w-4 h-4" />
+                </span>
+                <span className="text-left">
+                  <span className="block text-[0.65rem] tracking-[0.2em] uppercase opacity-80">
+                    Pay by bank transfer
+                  </span>
+                  <span className="block text-sm font-normal">View payment details →</span>
+                </span>
+              </Link>
             </div>
 
             <ul className="space-y-6">

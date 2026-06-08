@@ -37,7 +37,6 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
               { href: "#about", label: "About" },
               { href: "#services", label: "Services" },
               { href: "#contact", label: "Contact" },
-              { href: "/bookkeeper/payment", label: "Payment" },
               { href: "/", label: "Attorney" },
             ].map((link) => (
               <li key={link.href + link.label}>

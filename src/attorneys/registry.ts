@@ -2,12 +2,14 @@ import type { AttorneyProfile } from "@/types/attorney";
 import { jayGellhausProfile } from "@/attorneys/jay-gellhaus/profile";
 import { jayGervasiProfile } from "@/attorneys/jay-gervasi/profile";
 import { jayMarsonProfile } from "@/attorneys/jay-marson/profile";
+import { jayPickardProfile } from "@/attorneys/jay-pickard/profile";
 import { jayWangProfile } from "@/attorneys/jay-wang/profile";
 
 export const ATTORNEY_REGISTRY: Record<string, AttorneyProfile> = {
   [jayGellhausProfile.slug]: jayGellhausProfile,
   [jayGervasiProfile.slug]: jayGervasiProfile,
   [jayMarsonProfile.slug]: jayMarsonProfile,
+  [jayPickardProfile.slug]: jayPickardProfile,
   [jayWangProfile.slug]: jayWangProfile,
 };
 

@@ -1,8 +1,6 @@
-import { cookies } from "next/headers";
-import { ACTIVE_ATTORNEY_SLUG } from "@/config/active-attorney";
-import { ATTORNEY_REGISTRY, ATTORNEY_SLUGS } from "@/attorneys/registry";
+import { notFound } from "next/navigation";
 import type { AttorneyProfile } from "@/types/attorney";
-import { ATTORNEY_COOKIE } from "@/lib/attorney-constants";
+import { ATTORNEY_REGISTRY, ATTORNEY_SLUGS } from "@/attorneys/registry";
 
 export { ATTORNEY_COOKIE } from "@/lib/attorney-constants";
 
@@ -14,46 +12,14 @@ export function getAttorneyBySlug(slug: string): AttorneyProfile | null {
   return ATTORNEY_REGISTRY[slug] ?? null;
 }
 
-export function resolveAttorneySlug(options?: {
-  querySlug?: string;
-  cookieSlug?: string;
-}): string {
-  const envSlug = process.env.NEXT_PUBLIC_ACTIVE_ATTORNEY;
-
-  if (process.env.NODE_ENV === "development") {
-    if (options?.querySlug && isValidAttorneySlug(options.querySlug)) {
-      return options.querySlug;
-    }
-    if (options?.cookieSlug && isValidAttorneySlug(options.cookieSlug)) {
-      return options.cookieSlug;
-    }
+export function getAttorneyFromParams(slug: string): AttorneyProfile {
+  const attorney = getAttorneyBySlug(slug);
+  if (!attorney) {
+    notFound();
   }
-
-  if (envSlug && isValidAttorneySlug(envSlug)) {
-    return envSlug;
-  }
-
-  if (isValidAttorneySlug(ACTIVE_ATTORNEY_SLUG)) {
-    return ACTIVE_ATTORNEY_SLUG;
-  }
-
-  return ATTORNEY_SLUGS[0];
+  return attorney;
 }
 
-export async function getActiveAttorney(options?: {
-  querySlug?: string;
-}): Promise<AttorneyProfile> {
-  const cookieStore = await cookies();
-  const cookieSlug = cookieStore.get(ATTORNEY_COOKIE)?.value;
-  const slug = resolveAttorneySlug({
-    querySlug: options?.querySlug,
-    cookieSlug,
-  });
-  const attorney = getAttorneyBySlug(slug);
-
-  if (!attorney) {
-    throw new Error(`Attorney profile not found for slug: ${slug}`);
-  }
-
-  return attorney;
+export function getAllAttorneySlugs(): string[] {
+  return ATTORNEY_SLUGS;
 }

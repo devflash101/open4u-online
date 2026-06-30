@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { AttorneyProfile } from "@/types/attorney";
+import { attorneyPaths } from "@/lib/paths";
 
 interface FooterProps {
   attorney: AttorneyProfile;
@@ -7,6 +8,7 @@ interface FooterProps {
 
 export default function Footer({ attorney }: FooterProps) {
   const year = new Date().getFullYear();
+  const paths = attorneyPaths(attorney.slug);
 
   return (
     <footer className="border-t border-[var(--attorney-primary)]/10 py-10 px-6 md:px-10">
@@ -19,7 +21,7 @@ export default function Footer({ attorney }: FooterProps) {
             {attorney.firm} · {attorney.address.city}, {attorney.address.state}
           </span>
           <Link
-            href="/bookkeeper"
+            href={paths.bookkeeper}
             className="hover:text-[var(--attorney-accent)] transition-colors"
           >
             Bookkeeper

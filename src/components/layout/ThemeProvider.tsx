@@ -1,16 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import type { AttorneyProfile } from "@/types/attorney";
+import type { AttorneyTheme } from "@/types/attorney";
 
 interface ThemeProviderProps {
-  attorney: AttorneyProfile;
+  theme: AttorneyTheme;
   children: React.ReactNode;
 }
 
-export default function ThemeProvider({ attorney, children }: ThemeProviderProps) {
-  const { theme } = attorney;
-
+export default function ThemeProvider({ theme, children }: ThemeProviderProps) {
   useEffect(() => {
     document.documentElement.style.setProperty("--attorney-primary", theme.primary);
     document.documentElement.style.setProperty("--attorney-accent", theme.accent);

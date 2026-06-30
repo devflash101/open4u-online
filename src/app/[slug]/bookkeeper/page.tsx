@@ -4,15 +4,15 @@ import ThemeProvider from "@/components/layout/ThemeProvider";
 import AttorneySwitch from "@/components/dev/AttorneySwitch";
 import BookkeeperPortfolio from "@/components/bookkeeper/BookkeeperPortfolio";
 import { BOOKKEEPER } from "@/config/bookkeeper";
-import { getActiveAttorney } from "@/lib/attorney";
+import { getAttorneyFromParams } from "@/lib/attorney";
 
-interface BookkeeperPageProps {
-  searchParams: Promise<{ attorney?: string }>;
+interface BookkeeperRouteProps {
+  params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ searchParams }: BookkeeperPageProps): Promise<Metadata> {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
+export async function generateMetadata({ params }: BookkeeperRouteProps): Promise<Metadata> {
+  const { slug } = await params;
+  const attorney = getAttorneyFromParams(slug);
 
   return {
     title: `${BOOKKEEPER.name} — Bookkeeper · ${attorney.firm}`,
@@ -20,12 +20,12 @@ export async function generateMetadata({ searchParams }: BookkeeperPageProps): P
   };
 }
 
-export default async function BookkeeperPage({ searchParams }: BookkeeperPageProps) {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
+export default async function BookkeeperRoute({ params }: BookkeeperRouteProps) {
+  const { slug } = await params;
+  const attorney = getAttorneyFromParams(slug);
 
   return (
-    <ThemeProvider attorney={attorney}>
+    <ThemeProvider theme={attorney.theme}>
       <BookkeeperPortfolio attorney={attorney} />
       <Suspense fallback={null}>
         <AttorneySwitch activeSlug={attorney.slug} />

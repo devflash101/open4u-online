@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { BOOKKEEPER } from "@/config/bookkeeper";
+import { attorneyPaths } from "@/lib/paths";
 import type { AttorneyProfile } from "@/types/attorney";
 
 interface BookkeeperPortfolioProps {
@@ -14,6 +15,7 @@ function formatOfficeAddress(attorney: AttorneyProfile): string {
 
 export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioProps) {
   const b = BOOKKEEPER;
+  const paths = attorneyPaths(attorney.slug);
   const officeLocation = formatOfficeAddress(attorney);
 
   return (
@@ -37,7 +39,7 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
               { href: "#about", label: "About" },
               { href: "#services", label: "Services" },
               { href: "#contact", label: "Contact" },
-              { href: "/", label: "Attorney" },
+              { href: paths.profile, label: "Attorney" },
             ].map((link) => (
               <li key={link.href + link.label}>
                 <Link
@@ -201,7 +203,7 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
                 directly. All communications are handled confidentially.
               </p>
               <Link
-                href="/bookkeeper/payment"
+                href={paths.payment}
                 className="inline-flex items-center gap-3 px-6 py-3.5 border transition-colors hover:bg-[var(--attorney-bg)] hover:text-[var(--attorney-primary)]"
                 style={{
                   borderColor: "var(--attorney-accent)",
@@ -269,7 +271,7 @@ export default function BookkeeperPortfolio({ attorney }: BookkeeperPortfolioPro
       <footer className="border-t border-[var(--attorney-primary)]/10 py-10 px-6 md:px-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-[var(--attorney-primary)]/60">
           <p>© {new Date().getFullYear()} {b.name}. All rights reserved.</p>
-          <Link href="/" className="text-[0.7rem] tracking-wide hover:text-[var(--attorney-accent)]">
+          <Link href={paths.profile} className="text-[0.7rem] tracking-wide hover:text-[var(--attorney-accent)]">
             Back to {attorney.name}
           </Link>
         </div>

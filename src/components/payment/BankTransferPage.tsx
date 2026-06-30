@@ -3,6 +3,7 @@ import { ArrowLeft, Landmark } from "lucide-react";
 import { BANK_PAYMENT } from "@/config/bank-payment";
 import { BOOKKEEPER } from "@/config/bookkeeper";
 import CopyValue from "@/components/payment/CopyValue";
+import { attorneyPaths } from "@/lib/paths";
 import type { AttorneyProfile } from "@/types/attorney";
 
 interface BankTransferPageProps {
@@ -16,13 +17,14 @@ function formatBusinessAddress(attorney: AttorneyProfile): string {
 
 export default function BankTransferPage({ attorney }: BankTransferPageProps) {
   const p = BANK_PAYMENT;
+  const paths = attorneyPaths(attorney.slug);
   const businessAddress = formatBusinessAddress(attorney);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 bg-[var(--attorney-bg)]/90 backdrop-blur-md border-b border-[var(--attorney-primary)]/10">
         <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-          <Link href="/bookkeeper" className="flex items-center gap-2 min-w-0">
+          <Link href={paths.bookkeeper} className="flex items-center gap-2 min-w-0">
             <ArrowLeft className="w-4 h-4 shrink-0 text-[var(--attorney-primary)]/60" />
             <span
               className="font-serif text-lg font-light tracking-wide truncate"
@@ -32,7 +34,7 @@ export default function BankTransferPage({ attorney }: BankTransferPageProps) {
             </span>
           </Link>
           <Link
-            href="/"
+            href={paths.profile}
             className="text-[0.7rem] tracking-[0.18em] uppercase text-[var(--attorney-primary)]/70 hover:text-[var(--attorney-accent)] transition-colors"
           >
             Attorney
@@ -110,7 +112,7 @@ export default function BankTransferPage({ attorney }: BankTransferPageProps) {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
-                href="/bookkeeper"
+                href={paths.bookkeeper}
                 className="inline-block px-8 py-3 text-[0.7rem] tracking-[0.2em] uppercase text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: "var(--attorney-primary)" }}
               >

@@ -1,8 +1,7 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
-import { ATTORNEY_COOKIE } from "@/lib/attorney-constants";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 import { ATTORNEY_LIST } from "@/attorneys/registry";
 
 interface AttorneySwitchProps {
@@ -11,27 +10,16 @@ interface AttorneySwitchProps {
 
 export default function AttorneySwitch({ activeSlug }: AttorneySwitchProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
 
   const switchAttorney = useCallback(
     (slug: string) => {
-      document.cookie = `${ATTORNEY_COOKIE}=${slug}; path=/; max-age=31536000; SameSite=Lax`;
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("attorney", slug);
-      router.push(`/?${params.toString()}`);
+      router.push(`/${slug}`);
       router.refresh();
       setOpen(false);
     },
-    [router, searchParams],
+    [router],
   );
-
-  useEffect(() => {
-    const querySlug = searchParams.get("attorney");
-    if (querySlug && querySlug !== activeSlug) {
-      document.cookie = `${ATTORNEY_COOKIE}=${querySlug}; path=/; max-age=31536000; SameSite=Lax`;
-    }
-  }, [searchParams, activeSlug]);
 
   if (process.env.NODE_ENV !== "development") {
     return null;
@@ -80,7 +68,7 @@ export default function AttorneySwitch({ activeSlug }: AttorneySwitchProps) {
             ))}
           </ul>
           <div className="px-3 py-2 text-[0.65rem] text-neutral-400 border-t border-neutral-100">
-            Production uses branch config in src/config/active-attorney.ts
+            Home (/) shows generic firm page — no attorney links
           </div>
         </div>
       )}

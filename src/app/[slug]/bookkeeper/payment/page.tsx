@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 import ThemeProvider from "@/components/layout/ThemeProvider";
 import AttorneySwitch from "@/components/dev/AttorneySwitch";
 import BankTransferPage from "@/components/payment/BankTransferPage";
-import { getActiveAttorney } from "@/lib/attorney";
+import { getAttorneyFromParams } from "@/lib/attorney";
 
-interface PaymentPageProps {
-  searchParams: Promise<{ attorney?: string }>;
+interface PaymentRouteProps {
+  params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ searchParams }: PaymentPageProps): Promise<Metadata> {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
+export async function generateMetadata({ params }: PaymentRouteProps): Promise<Metadata> {
+  const { slug } = await params;
+  const attorney = getAttorneyFromParams(slug);
 
   return {
     title: `Bank Transfer — ${attorney.firm}`,
@@ -19,12 +19,12 @@ export async function generateMetadata({ searchParams }: PaymentPageProps): Prom
   };
 }
 
-export default async function PaymentPage({ searchParams }: PaymentPageProps) {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
+export default async function PaymentRoute({ params }: PaymentRouteProps) {
+  const { slug } = await params;
+  const attorney = getAttorneyFromParams(slug);
 
   return (
-    <ThemeProvider attorney={attorney}>
+    <ThemeProvider theme={attorney.theme}>
       <BankTransferPage attorney={attorney} />
       <Suspense fallback={null}>
         <AttorneySwitch activeSlug={attorney.slug} />

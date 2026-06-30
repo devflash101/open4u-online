@@ -1,41 +1,17 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import ThemeProvider from "@/components/layout/ThemeProvider";
-import AttorneySwitch from "@/components/dev/AttorneySwitch";
-import AttorneyPortfolio from "@/components/AttorneyPortfolio";
-import { getAttorneyPage } from "@/attorneys/pages";
-import { getActiveAttorney } from "@/lib/attorney";
+import GeneralFirmPage from "@/components/home/GeneralFirmPage";
+import { FIRM } from "@/config/firm";
 
-interface HomeProps {
-  searchParams: Promise<{ attorney?: string }>;
-}
+export const metadata: Metadata = {
+  title: `${FIRM.name} — Legal Services`,
+  description: FIRM.tagline,
+};
 
-export async function generateMetadata({ searchParams }: HomeProps): Promise<Metadata> {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
-
-  return {
-    title: `${attorney.name} — ${attorney.firm}`,
-    description: attorney.tagline,
-  };
-}
-
-export default async function Home({ searchParams }: HomeProps) {
-  const params = await searchParams;
-  const attorney = await getActiveAttorney({ querySlug: params.attorney });
-  const AttorneyPage = getAttorneyPage(attorney.slug);
-
+export default function Home() {
   return (
-    <ThemeProvider attorney={attorney}>
-      {AttorneyPage ? (
-        <AttorneyPage attorney={attorney} />
-      ) : (
-        <AttorneyPortfolio attorney={attorney} />
-      )}
-
-      <Suspense fallback={null}>
-        <AttorneySwitch activeSlug={attorney.slug} />
-      </Suspense>
+    <ThemeProvider theme={FIRM.theme}>
+      <GeneralFirmPage />
     </ThemeProvider>
   );
 }

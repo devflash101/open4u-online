@@ -1,23 +1,26 @@
 import Link from "next/link";
 import type { AttorneyProfile } from "@/types/attorney";
+import { attorneyPaths } from "@/lib/paths";
 
 interface NavbarProps {
   attorney: AttorneyProfile;
 }
 
-const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#practice", label: "Practice Areas" },
-  { href: "#credentials", label: "Credentials" },
-  { href: "/bookkeeper", label: "Bookkeeper" },
-  { href: "#contact", label: "Contact" },
-];
-
 export default function Navbar({ attorney }: NavbarProps) {
+  const paths = attorneyPaths(attorney.slug);
+
+  const NAV_LINKS = [
+    { href: "#about", label: "About" },
+    { href: "#practice", label: "Practice Areas" },
+    { href: "#credentials", label: "Credentials" },
+    { href: paths.bookkeeper, label: "Bookkeeper" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-[var(--attorney-bg)]/90 backdrop-blur-md border-b border-[var(--attorney-primary)]/10">
       <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-        <Link href="/" className="min-w-0">
+        <Link href={paths.profile} className="min-w-0">
           <span
             className="block font-serif text-lg md:text-xl font-light tracking-wide truncate"
             style={{ color: "var(--attorney-primary)" }}

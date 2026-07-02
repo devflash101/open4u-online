@@ -202,7 +202,7 @@ export default function GeneralFirmPage() {
                 Let&apos;s discuss your case
               </h2>
               <p className="opacity-75 leading-relaxed max-w-md">
-                Reach out to {firm.name} to schedule a consultation with Jay and our team.
+                Reach out to us to schedule a consultation with Jay and our team.
               </p>
             </div>
             <ul className="space-y-6">

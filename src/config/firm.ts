@@ -17,10 +17,10 @@ export interface FirmConfig {
 }
 
 export const FIRM: FirmConfig = {
-  name: "Jay Law Group",
+  name: "Open for You",
   tagline: "Trusted legal counsel with compassion, clarity, and decades of combined experience.",
   about:
-    "Jay Law Group is a client-focused law practice dedicated to helping individuals and families navigate life's most important legal matters. Led by attorney Jay, our team combines rigorous legal knowledge with a personal approach — listening carefully, explaining options clearly, and advocating tirelessly on your behalf.",
+    "We are a client-focused law practice dedicated to helping individuals and families navigate life's most important legal matters. Led by attorney Jay, our team combines rigorous legal knowledge with a personal approach — listening carefully, explaining options clearly, and advocating tirelessly on your behalf.",
   aboutExtended: [
     "Whether you are facing a family transition, recovering from an injury, planning your estate, or resolving a business dispute, we believe every client deserves attentive representation and honest guidance. Jay and our support staff work together to keep your case moving forward with professionalism and care.",
     "We serve clients across multiple practice areas and take pride in building lasting relationships founded on trust, responsiveness, and results.",

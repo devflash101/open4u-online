@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Mail, Phone, Quote } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { FIRM } from "@/config/firm";
 import { DEFAULT_CONTACT } from "@/config/default-contact";
+import ReviewsCarousel from "@/components/home/ReviewsCarousel";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -12,6 +13,8 @@ const NAV_LINKS = [
 
 export default function GeneralFirmPage() {
   const firm = FIRM;
+  const featuredAreas = firm.practiceAreas.filter((a) => a.featured);
+  const otherAreas = firm.practiceAreas.filter((a) => !a.featured);
 
   return (
     <>
@@ -25,7 +28,7 @@ export default function GeneralFirmPage() {
               {firm.name}
             </span>
             <span className="block text-[0.65rem] tracking-[0.15em] uppercase text-[var(--attorney-primary)]/60 truncate">
-              Legal Services
+              Family & Immigration Law
             </span>
           </Link>
           <ul className="hidden md:flex items-center gap-8">
@@ -128,26 +131,65 @@ export default function GeneralFirmPage() {
               Practice Areas
             </p>
             <h2
-              className="font-serif text-4xl md:text-5xl font-light mb-12"
+              className="font-serif text-4xl md:text-5xl font-light mb-4"
               style={{ color: "var(--attorney-primary)" }}
             >
-              How we can help
+              Family & immigration at the center
             </h2>
-            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {firm.practiceAreas.map((area) => (
+            <p className="text-[var(--attorney-primary)]/70 max-w-2xl mb-12 leading-relaxed">
+              Our core practice helps families stay together, resolve disputes, and move forward
+              with confidence — at home and across borders.
+            </p>
+
+            <ul className="grid md:grid-cols-3 gap-6 mb-10">
+              {featuredAreas.map((area) => (
                 <li
-                  key={area}
-                  className="px-5 py-4 border border-[var(--attorney-primary)]/15 bg-[var(--attorney-bg)] text-[var(--attorney-primary)]/85 text-sm tracking-wide"
+                  key={area.name}
+                  className="p-6 border-2 bg-[var(--attorney-bg)]"
+                  style={{ borderColor: "var(--attorney-accent)" }}
                 >
-                  {area}
+                  <span
+                    className="inline-block text-[0.6rem] tracking-[0.2em] uppercase mb-3 px-2 py-1"
+                    style={{
+                      backgroundColor: `${firm.theme.accent}22`,
+                      color: "var(--attorney-accent)",
+                    }}
+                  >
+                    Primary focus
+                  </span>
+                  <h3
+                    className="font-serif text-xl font-light mb-3"
+                    style={{ color: "var(--attorney-primary)" }}
+                  >
+                    {area.name}
+                  </h3>
+                  <p className="text-sm text-[var(--attorney-primary)]/75 leading-relaxed">
+                    {area.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {otherAreas.map((area) => (
+                <li
+                  key={area.name}
+                  className="px-5 py-4 border border-[var(--attorney-primary)]/15 bg-[var(--attorney-bg)]"
+                >
+                  <p className="text-sm font-medium text-[var(--attorney-primary)] mb-1">
+                    {area.name}
+                  </p>
+                  <p className="text-xs text-[var(--attorney-primary)]/60 leading-relaxed">
+                    {area.description}
+                  </p>
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section id="reviews" className="py-24 px-6 md:px-10">
-          <div className="max-w-6xl mx-auto">
+        <section id="reviews" className="py-24 overflow-hidden">
+          <div className="max-w-6xl mx-auto px-6 md:px-10 mb-12">
             <p
               className="text-[0.7rem] tracking-[0.25em] uppercase mb-3"
               style={{ color: "var(--attorney-accent)" }}
@@ -155,34 +197,18 @@ export default function GeneralFirmPage() {
               Client Reviews
             </p>
             <h2
-              className="font-serif text-4xl md:text-5xl font-light mb-12"
+              className="font-serif text-4xl md:text-5xl font-light mb-4"
               style={{ color: "var(--attorney-primary)" }}
             >
-              What our clients say
+              Families & immigrants we&apos;ve helped
             </h2>
-            <ul className="grid md:grid-cols-2 gap-6">
-              {firm.reviews.map((review) => (
-                <li
-                  key={review.author}
-                  className="p-6 border border-[var(--attorney-primary)]/15 bg-[var(--attorney-bg)]"
-                >
-                  <Quote
-                    className="w-8 h-8 mb-4 opacity-30"
-                    style={{ color: "var(--attorney-accent)" }}
-                  />
-                  <p className="text-[var(--attorney-primary)]/85 leading-relaxed mb-4 italic">
-                    &ldquo;{review.quote}&rdquo;
-                  </p>
-                  <p className="text-sm font-medium text-[var(--attorney-primary)]">
-                    {review.author}
-                  </p>
-                  <p className="text-xs text-[var(--attorney-primary)]/50 mt-0.5">
-                    {review.context}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <p className="text-[var(--attorney-primary)]/70 max-w-2xl leading-relaxed">
+              Real stories from clients who trusted Jay with custody, divorce, green cards, and
+              family petitions.
+            </p>
           </div>
+
+          <ReviewsCarousel reviews={firm.reviews} />
         </section>
 
         <section

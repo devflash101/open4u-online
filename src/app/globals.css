@@ -19,3 +19,34 @@ body {
 .font-serif {
   font-family: var(--font-serif);
 }
+
+.review-marquee-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-marquee-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.review-marquee-scroll.review-marquee-dragging {
+  cursor: grabbing;
+}
+
+.review-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.review-marquee-fade-left {
+  background: linear-gradient(to right, var(--attorney-bg) 20%, transparent);
+}
+
+.review-marquee-fade-right {
+  background: linear-gradient(to left, var(--attorney-bg) 20%, transparent);
+}

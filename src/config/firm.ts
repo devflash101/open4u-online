@@ -26,8 +26,7 @@ export interface FirmConfig {
 
 export const FIRM: FirmConfig = {
   name: "Open for You",
-  tagline:
-    "Compassionate legal guidance for families and immigrants — clear answers when life changes course.",
+  tagline: "Trusted legal counsel with compassion, clarity, and decades of combined experience.",
   about:
     "We are a client-focused law practice dedicated to helping individuals and families navigate life's most important legal matters. Led by attorney Jay, our team combines rigorous legal knowledge with a personal approach — listening carefully, explaining options clearly, and advocating tirelessly on your behalf.",
   aboutExtended: [
